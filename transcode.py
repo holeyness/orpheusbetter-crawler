@@ -2,7 +2,6 @@
 import errno
 import multiprocessing
 import os
-import pipes
 import re
 import shlex
 import shutil
@@ -144,8 +143,8 @@ def transcode_commands(output_format, resample, needed_sample_rate, flac_file, t
         transcoding_steps.append(flac_encoder)
 
     transcode_args = {
-        'FLAC' : pipes.quote(flac_file),
-        'FILE' : pipes.quote(transcode_file),
+        'FLAC' : shlex.quote(flac_file),
+        'FILE' : shlex.quote(transcode_file),
         'OPTS' : encoders[output_format]['opts'],
         'SAMPLERATE' : needed_sample_rate,
     }
